@@ -28,10 +28,9 @@ const Register = () => {
   const handleRegister = (formValues: RegisterFormType) => {
     setIsLoading(true);
 
-    //fetch axios /register
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000000000);
+    //fetch/axios
+
+    setIsLoading(false);
   };
   if (isLoggedIn) {
     return <Navigate to="/" />;
