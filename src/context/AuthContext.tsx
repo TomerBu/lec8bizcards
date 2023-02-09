@@ -11,13 +11,15 @@ const AuthContext = createContext<AuthContextType>(initialState);
 
 const AuthContextProvider = ({ children }: ChildProps) => {
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") ?? "");
-    //TODO: check if it's not empty!
-    const token = user.token;
-    const email = user.email;
-    const username = user.username;
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const user = JSON.parse(userData);
+      const token = user.token;
+      const email = user.email;
+      const username = user.username;
 
-    login(username, email, token)
+      login(username, email, token);
+    }
   }, []);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);

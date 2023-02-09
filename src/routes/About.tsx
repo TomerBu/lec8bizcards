@@ -12,7 +12,7 @@ const About = () => {
   }
 
   fetch("http://localhost:3001/api/books/all", {
-    headers: { token: token },
+    headers: { "Authorization": token },
   })
     .then((res) => res.json())
     .then((data) => {
