@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { DarkModeContextProvider } from "./context/dark-mode-context";
 import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -14,11 +15,13 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <DarkModeContextProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </DarkModeContextProvider>
+      <AuthContextProvider>
+        <DarkModeContextProvider>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </DarkModeContextProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
