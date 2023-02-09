@@ -1,25 +1,19 @@
-import { useEffect } from "react";
+import { useContext } from "react";
 import "./App.css";
+import DarkModeContext from "./context/dark-mode-context";
 
 function App() {
-  useEffect(() => {
-    fetch("http://localhost:3001/api/auth/signin", {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify({
-        email: "Batman@gmail.com",
-        password: "123456aA!",
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
-  return <div className="App"></div>;
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+
+  return <div className="App">
+    <p>
+      {darkMode ? "DARK" : "NOT DARK"}
+    </p>
+
+    <button onClick={()=>{
+      toggleDarkMode()
+    }}>TOGGLE DARK</button>
+  </div>;
 }
 
 export default App;

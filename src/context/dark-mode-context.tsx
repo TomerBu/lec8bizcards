@@ -12,8 +12,10 @@ const initialState: DarkModeContextType = {
 const DarkModeContext = createContext<DarkModeContextType>(initialState);
 
 const DarkModeContextProvider = ({ children }: ChildProps) => {
+  //state: shared with all the app:
   const [darkMode, setDarkMode] = useState(false);
 
+  //action: changes the state:
   const toggleDarkMode = () => {
     setDarkMode((mode) => !mode);
   };
