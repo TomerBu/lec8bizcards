@@ -9,12 +9,12 @@ import Login from "./routes/Login";
 import Register from "./routes/Register";
 
 function App() {
-  const {isLoggedIn} = useContext(AuthContext)
+  const { isLoggedIn } = useContext(AuthContext);
   return (
     <>
       <Navabar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {isLoggedIn && <Route path="/" element={<Home />} />}
         <Route path="/about" element={<About />} />
         {!isLoggedIn && <Route path="/login" element={<Login />} />}
         {!isLoggedIn && <Route path="/register" element={<Register />} />}

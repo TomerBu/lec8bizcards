@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { ColorRing } from "react-loader-spinner";
 import authService from "../services/auth.service";
+import axios from "axios";
 
 const Register = () => {
   const nav = useNavigate();
@@ -35,13 +36,14 @@ const Register = () => {
     authService
       .register(username, email, password)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         //swal
-        nav("/");
+        nav("/login");
       })
       .catch((e) => {
         console.log(e);
-        setErrMessage(e);
+        alert(e); //swal //modal
+        setErrMessage(JSON.stringify(e.response.data));
       })
       .finally(() => {
         setIsLoading(false);
